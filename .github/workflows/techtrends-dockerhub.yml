@@ -32,4 +32,4 @@ jobs:
           context: ./project
           file: ./project/Dockerfile
           push: true
-          tags: techtrends:latest
+          tags: anthonysalvato3/techtrends:latest
