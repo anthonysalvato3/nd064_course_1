@@ -14,14 +14,20 @@ spec:
         app: techtrends
     spec:
       containers:
-      - image: {{ .Values.image.repository }}:{{ .Values.image.tag }}:{{ .Values.image.pullPolicy }}
+      - image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         name: techtrends
         ports:
         - containerPort: {{ .Values.ports.containerPort }}
         resources:
-          requests: {{ .Values.resources.requests.cpu }}:{{ .Values.resources.requests.memory }}
+          requests:
+            memory: {{ .Values.resources.requests.memory }}
+            cpu: {{ .Values.resources.requests.cpu }}
         livenessProbe:
-          httpGet: {{ .Values.livenessProbe.httpGet.path }}:{{ .Values.ports.containerPort }}
+          httpGet:
+            path: {{ .Values.livenessProbe.httpGet.path }}
+            port: {{ .Values.ports.containerPort }}
 
         readinessProbe:
-          httpGet: {{ .Values.readinessProbe.httpGet.path }}:{{ .Values.ports.containerPort }}
+          httpGet: 
+            path: {{ .Values.readinessProbe.httpGet.path }}
+            port: {{ .Values.ports.containerPort }}
